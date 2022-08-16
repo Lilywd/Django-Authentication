@@ -32,25 +32,39 @@
         <nav class="nav">
             <div class="nav-list">
               <a class="nav-a" href="/">Home</a>
-              <a class="nav-a" href="#">Services</a>
+              <a class="nav-a" href="/services">Services</a>
               <a class="nav-a" href="/contact">Contact Us</a>
               <a class="nav-a" href="/faq">FAQs</a>
-              <a class="nav-a" href="#">API</a>
-              <a class="nav-a" href="/profile">profile</a>
+              <a class="nav-a" href="/api">API</a>
+             <!-- <a class="nav-a" href="/profile">profile</a> -->
 
             </div>
+            {% for message in messages %}
+    <div class="alert alert- {{ message.tags }} alert-dismissible fade show" roles="alert">
+    <strong>Message:</strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
           </nav>
           <div class="btns">
+            {% if request.user.is_authenticated %}
+            <a href="/signout"><button class="white-btn">Log out</button></a>
+            {% else %}
             <a href="/signin"><button class="white-btn">Log In</button></a>
             <a href="/register"><button class="blue-btn">Register</button></a>
-            <a href="/signout"><button class="white-btn">Log out</button></a>
+            {% endif %}
+            
           </div>
         </div>
         <span class="hidesidebar">
           <span class="hidesidebar"style="font-size: 30px; cursor: pointer"onclick="openNav()">&#9776;</span>
             <div class="bluebtn">
                 <a href="/register"><button class="blue-btn">Register</button></a>
+                
             </div>
+            <a href="/signin"><button class="blue-btn">Login</button></a>
             <div class="logo-div">
                 <img style="align-items: left"src="{% static '/images/Bluelogo.png' %}" alt=""class="logo"/>
             </div>
@@ -58,10 +72,10 @@
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="/">Home</a>
-          <a href="#">Services</a>
+          <a href="/services">Services</a>
           <a href="/contact">Contact Us</a>
           <a href="/faq">FAQs</a>
-          <a href="#">API</a>
+          <a href="/api">API</a>
         </div>
         <!--Hero section -->
         <div class="slider">
@@ -73,8 +87,8 @@
                                 <div class="content">
                                     <h1 class="h2">Get The Most Of Your Information Secured.</h1>
                                     <p class="p"> Generate,save and utilize your digital QR codes.</p>
-                                    <button class="btn-1">Generate QR code</button>
-                                    <button class="btn-2">Watch Tutorial</button>
+                                    <a href="/dashboard"><button class="btn-1">Generate QR code</button></a>
+                                    <a href="/tutorial"><button class="btn-2">Watch Tutorial</button></a>
                                 </div>
                                 <div class="image">
                                     <img class="img"src=" {% static '/images/Frame2248.jpg' %}" class="main"alt="an image"width="450"height="300"/>
@@ -88,8 +102,8 @@
                                 <div class="content">
                                     <h1 class="h2">Access and share your important Information with your codes.</h1>
                                     <p class="p">Generate,save and utilize your digital QR codes.</p>
-                                    <button class="btn-1">Generate QR code</button>
-                                    <button class="btn-2">Watch Tutorial</button>
+                                    <a href="/dashboard"><button class="btn-1">Generate QR code</button></a>
+                                    <a href="/tutorial"><button class="btn-2">Watch Tutorial</button></a>
                                 </div>
                                 <div class="image">
                                     <img class="img"src="{% static '/images/Frame2248.jpg' %}"alt="an image"width="450"height="300"/>
@@ -103,9 +117,9 @@
                                 <div class="content">
                                     <h1 class="h2">You can also create your unigue QR code for your portfolio and other documents.</h1>
                                     <p class="p">Generate,save and utilize your digital QR codes.</p>
-                                    <button class="btn-1">Generate QR code</button>
-                                    <button class="btn-2">Watch Tutorial</button>
-                                </div>
+                                    <a href="/dashboard"><button class="btn-1">Generate QR code</button></a>
+                                    <a href="/tutorial"><button class="btn-2">Watch Tutorial</button></a>
+                                  </div>
                                 <div class="image">
                                     <img class="img"src="{%static '/images/Frame2248.jpg'%}" alt="an image" width="450"height="300"/>
                                 </div>
@@ -321,7 +335,7 @@
     Add editable and trackable QR codes on anything you want want with
     full branding and customizable features
   </p>
-  <button class="genbtn">Generate QR code</button>
+  <a href="/dashboard"><button class="genbtn">Generate QR code</button></a>
 </div>
 </section>
 <footer>
@@ -340,16 +354,16 @@
     <div class="link-boxes">
       <ul class="box">
         <li class="link_name">About</li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Our Services</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Support</a></li>
+        <li><a href="/">About Us</a></li>
+        <li><a href="/services">Our Services</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/contact">Support</a></li>
       </ul>
       <ul class="box">
         <li class="link_name">Product</li>
         <li><a href="#">Why Gencode</a></li>
         <li><a href="#">How it works</a></li>
-        <li><a href="#">APIs</a></li>
+        <li><a href="/api">APIs</a></li>
       </ul>
       <ul class="box">
         <li class="link_name">Support</li>
@@ -368,6 +382,7 @@
             name="email"
             placeholder="Enter your email here"
           />
+          <br><br>
           <button onclick="location.href='/contact'">contact us</button>
         </li>
       </ul>
@@ -379,14 +394,7 @@
 </div>
 </footer>
       
-    {% for message in messages %}
-    <div class="alert alert- {{ message.tags }} alert-dismissible fade show" roles="alert">
-    <strong>Message:</strong> {{ message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    {% endfor %}
+    
     
    
     {% endblock %} 

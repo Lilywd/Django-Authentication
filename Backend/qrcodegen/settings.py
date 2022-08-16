@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'crispy_forms',
+    'user_visit',
+    'history',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -71,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user_visit.middleware.UserVisitMiddleware',
 ]
 
 ROOT_URLCONF = 'qrcodegen.urls'
@@ -179,3 +182,28 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING = {
+    'version':1,
+    'loggers': {
+        'django':{
+            'handlers':['file'],
+            'level':'DEBUG'
+        }
+    },
+    'handlers': {
+        'file':{
+            'level':'INFO',
+            'class': 'logging.FileHandler',
+            'filename':'./logs/debug1.log',
+            'formatter':'simpleRe',
+        }
+    },
+    'formatters': {
+         'simpleRe': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        }
+    
+    }
+}
