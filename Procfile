@@ -1,1 +1,1 @@
-web: gunicorn qrcodegen --logfile -
+web: gunicorn qrcodegen.wsgi
