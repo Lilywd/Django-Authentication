@@ -1,1 +1,1 @@
-web: gunicorn genqrcode57-app --logfile-
+web: gunicorn qrcodegen --logfile -
