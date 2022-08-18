@@ -16,12 +16,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import Profile
 from .models import Contact
 
-import logging, traceback
+
 
 from requests import post
 # from history.mixins import objectViewMixin
 
-logger = logging.getLogger('django')
+
 
 
 # Create your views here.
@@ -63,7 +63,7 @@ def register(request):
 
         myuser.save()
         messages.success(request, "account created succesfully")
-        logger.info('user {} registered successfully {}'.format(myuser.first_name, request.META.get('HTTP_REFERER')))
+        
         return redirect('signin')
     
     
@@ -81,12 +81,12 @@ def signin(request):
             login(request, user)
             fname= user.first_name
             messages.info(request, f"You are now logged in as {username}.")
-            logger.info('user {} signed in successfully {}'.format(user.first_name, request.META.get('HTTP_REFERER')))
+            
             return render(request,  'authentication/index.html',{'fname':fname})
 			
         else:
             messages.error(request, user, "incorrect credentials")
-            logger.info('user {} was unable to sign in {}'.format(username, request.META.get('HTTP_REFERER')))
+            
             return redirect('home')
     
 
@@ -96,7 +96,7 @@ def signin(request):
 def signout(request):
     logout(request)
     messages.success(request, "logout successful")
-    logger.info('user logged out')
+    
     return redirect('home')
 
  

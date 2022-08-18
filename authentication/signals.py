@@ -7,7 +7,7 @@ import logging
 from django.contrib.auth import user_logged_in, user_logged_out, user_login_failed
 
 
-logger = logging.getLogger(__name__)
+
 
 
 @receiver(user_logged_in)

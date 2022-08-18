@@ -157,6 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/signin'
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
@@ -183,27 +184,3 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGGING = {
-    'version':1,
-    'loggers': {
-        'django':{
-            'handlers':['file'],
-            'level':'DEBUG'
-        }
-    },
-    'handlers': {
-        'file':{
-            'level':'INFO',
-            'class': 'logging.FileHandler',
-            'filename':'./logs/debug1.log',
-            'formatter':'simpleRe',
-        }
-    },
-    'formatters': {
-         'simpleRe': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
-        }
-    
-    }
-}
