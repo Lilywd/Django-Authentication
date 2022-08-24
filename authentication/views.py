@@ -247,3 +247,5 @@ def setting3(request):
 def tutorial(request):
     return render(request, 'authentication/tutorial.html')
 
+
+	

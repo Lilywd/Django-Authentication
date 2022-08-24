@@ -20,6 +20,5 @@ urlpatterns = [
     path("setting2", views.setting2, name="setting2"),
     path("setting3", views.setting3, name="setting3"),
     path("tutorial", views.tutorial, name="tutorial"),
-
-
+   
 ]

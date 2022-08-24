@@ -1,0 +1,18 @@
+{% load static %}
+<body>
+    <section class="autentication-form">
+          <div class="left-column" id="login-left">
+              <img src="{% static 'images/logo.png' %}" alt="" />
+          </div>
+          <div class="right-column">
+              <div class="form-header">
+                  <h1>{% block head_title %}{% trans "Social Network Login Failure" %}{% endblock %}</h1>
+         
+                  {% block content %}
+  <h3>{% trans "An error occurred while attempting to login via your social network account." %}</h3>
+  {% endblock %}
+              </div>
+              
+          </div>
+      </section>
+  </body>
